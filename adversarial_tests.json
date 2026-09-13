@@ -1,0 +1,47 @@
+[
+  {
+    "attack": "Replay of a used authorization nonce",
+    "precondition": "Attacker captures a previously-issued, already-consumed authorization request",
+    "procedure": "Resubmit an identical authorize() call reusing the same nonce",
+    "expected": "Second request rejected as a replay",
+    "observed": "first=OK, second=REPLAY_DETECTED",
+    "attack_succeeded": false,
+    "property_violated": "none"
+  },
+  {
+    "attack": "Cross-incident authorization",
+    "precondition": "Artifact genuinely recorded under Incident A",
+    "procedure": "Investigator (legitimately credentialed on Incident B) requests authorization for the Incident-A artifact while citing Incident B",
+    "expected": "Rejected: artifact's recorded incident does not match the claimed incident",
+    "observed": "INCIDENT_MISMATCH",
+    "attack_succeeded": false,
+    "property_violated": "none"
+  },
+  {
+    "attack": "Post-hoc provenance record tampering (no signing key)",
+    "precondition": "Attacker gains write access to the registry's storage but not its Ed25519 private key",
+    "procedure": "Directly edit a field (sha256) of an already-signed, already-chained event",
+    "expected": "Chain/signature verification fails",
+    "observed": "verify_chain() == False",
+    "attack_succeeded": false,
+    "property_violated": "none"
+  },
+  {
+    "attack": "Arbitrary-file submission by a genuinely authenticated investigator",
+    "precondition": "Investigator's own credentials are valid and unphished",
+    "procedure": "Investigator (or malware acting through their session) requests analysis of a file that was never recorded as acquired during any incident",
+    "expected": "Rejected: no provenance record exists for this artifact id",
+    "observed": "NO_PROVENANCE_RECORD",
+    "attack_succeeded": false,
+    "property_violated": "none"
+  },
+  {
+    "attack": "Use of an expired authorization token",
+    "precondition": "Token was validly issued but its TTL has elapsed",
+    "procedure": "Agent attempts to act on the token after expiry",
+    "expected": "verify_token() returns False for an expired token",
+    "observed": "issued=OK, verify_token_after_expiry=False",
+    "attack_succeeded": false,
+    "property_violated": "none"
+  }
+]

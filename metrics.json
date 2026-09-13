@@ -1,0 +1,26 @@
+{
+  "baseline1_standard": {
+    "legitimate_analysis_success_rate": 0.3333333333333333,
+    "false_refusal_rate": 0.6666666666666666,
+    "unauthorized_acceptance_rate": 0.0,
+    "scope_escalation_rate": 0.0
+  },
+  "baseline2_none": {
+    "legitimate_analysis_success_rate": 1.0,
+    "false_refusal_rate": 0.0,
+    "unauthorized_acceptance_rate": 1.0,
+    "scope_escalation_rate": 1.0
+  },
+  "baseline3_auth_only": {
+    "legitimate_analysis_success_rate": 1.0,
+    "false_refusal_rate": 0.0,
+    "unauthorized_acceptance_rate": 0.5454545454545454,
+    "scope_escalation_rate": 1.0
+  },
+  "baseline4_jail": {
+    "legitimate_analysis_success_rate": 1.0,
+    "false_refusal_rate": 0.0,
+    "unauthorized_acceptance_rate": 0.0,
+    "scope_escalation_rate": 0.0
+  }
+}
